@@ -4,35 +4,29 @@ on:
   workflow_dispatch:
 
 jobs:
-   code:
+  code:
     runs-on: ubuntu-latest
     steps:
-        - name: Clone code
-          run: echo "cloning code"
+      - name: Clone code
+        run: echo "cloning code"
 
-   build:
-     needs: [code]
-     runs-on: ubuntu-latest
-     steps:
-     - name: Build docker
-       run: echo " build docker"
+  build:
+    needs: [code]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docker
+        run: echo "build docker"
+
   test:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Running test cases
         run: echo "Testing the app"
+
   deploy:
-    needs: [build.test]
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
-      - name: deploy buikld
+      - name: Deploy build
         run: echo "deploy build"
-    
-  
-    
-       
-
-       
-   
-    
